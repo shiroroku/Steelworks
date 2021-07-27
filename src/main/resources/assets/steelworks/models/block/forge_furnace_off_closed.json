@@ -1,0 +1,14 @@
+{
+    "parent": "minecraft:block/cube",
+    "textures": {
+        "particle": "#side",
+        "north": "#side",
+        "south": "#side",
+        "east": "#side",
+        "west": "#side",
+        "up": "#top",
+        "down": "steelworks:blocks/forge_furnace_bottom",
+        "top": "steelworks:blocks/forge_furnace_top_cover",
+        "side": "steelworks:blocks/forge_furnace_side"
+    }
+}

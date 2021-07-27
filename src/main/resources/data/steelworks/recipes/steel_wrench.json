@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " B ",
+        " AB",
+        "A  "
+    ],
+    "key": {
+        "A": {
+            "tag": "forge:ingots/steel"
+        },
+        "B": {
+            "tag": "forge:nuggets/steel"
+        }
+    },
+    "result": {
+        "item": "steelworks:steel_wrench"
+    }
+}

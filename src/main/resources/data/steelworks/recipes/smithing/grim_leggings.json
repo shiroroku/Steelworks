@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:smithing",
+    "base": {
+        "item": "minecraft:chainmail_leggings"
+    },
+    "addition": {
+        "item": "steelworks:grimsteel_ingot"
+    },
+    "result": {
+        "item": "steelworks:grim_leggings"
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:smithing",
+    "base": {
+        "item": "steelworks:steel_scythe"
+    },
+    "addition": {
+        "item": "steelworks:grimsteel_ingot"
+    },
+    "result": {
+        "item": "steelworks:grim_scythe"
+    }
+}

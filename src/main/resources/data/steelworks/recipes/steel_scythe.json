@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "BB ",
+        " AB",
+        "A  "
+    ],
+    "key": {
+        "A": {
+            "tag": "forge:rods/wooden"
+        },
+        "B": {
+            "tag": "forge:ingots/steel"
+        }
+    },
+    "result": {
+        "item": "steelworks:steel_scythe"
+    }
+}

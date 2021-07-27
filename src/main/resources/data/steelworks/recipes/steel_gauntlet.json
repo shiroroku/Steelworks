@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "CAC",
+        "B B",
+        "B B"
+    ],
+    "key": {
+        "A": {
+            "tag": "forge:plates/steel"
+        },
+        "B": {
+            "tag": "forge:nuggets/steel"
+        },
+        "C": {
+            "tag": "forge:ingots/steel"
+        }
+    },
+    "result": {
+        "item": "steelworks:steel_gauntlet"
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "variants": {
+        "is_on=false,is_open=false": {
+            "model": "steelworks:block/forge_furnace_off_closed"
+        },
+        "is_on=true,is_open=false": {
+            "model": "steelworks:block/forge_furnace_on_closed"
+        },
+        "is_on=true,is_open=true": {
+            "model": "steelworks:block/forge_furnace_on_open"
+        },
+        "is_on=false,is_open=true": {
+            "model": "steelworks:block/forge_furnace_off_open"
+        }
+    }
+}

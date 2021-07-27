@@ -1,0 +1,14 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "steelworks:items/steel_sword"
+    },
+    "overrides": [
+        {
+            "predicate": {
+                "steelworks:blocking": 1.0
+            },
+            "model": "steelworks:item/steel_sword_blocking"
+        }
+    ]
+}

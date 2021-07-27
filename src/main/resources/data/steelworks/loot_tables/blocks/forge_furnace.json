@@ -1,0 +1,41 @@
+{
+    "type": "minecraft:block",
+    "pools": [
+        {
+            "name": "pool_1",
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "steelworks:forge_furnace",
+                    "functions": [
+                        {
+                            "function": "minecraft:copy_name",
+                            "source": "block_entity"
+                        },
+                        {
+                            "function": "minecraft:copy_nbt",
+                            "source": "block_entity",
+                            "ops": [
+                                {
+                                    "source": "inventory",
+                                    "target": "BlockEntityTag.inventory",
+                                    "op": "replace"
+                                }
+                            ]
+                        },
+                        {
+                            "function": "minecraft:set_contents",
+                            "entries": [
+                                {
+                                    "type": "minecraft:dynamic",
+                                    "name": "minecraft:contents"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

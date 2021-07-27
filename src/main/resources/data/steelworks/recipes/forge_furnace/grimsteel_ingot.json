@@ -1,0 +1,19 @@
+{
+    "type": "steelworks:forge_furnace_recipe",
+    "ingredients": [
+        {
+            "tag": "forge:ingots/steel"
+        },
+        {
+            "item": "minecraft:obsidian"
+        },
+        {
+            "item": "minecraft:soul_soil"
+        }
+    ],
+    "output": {
+        "item": "steelworks:grimsteel_ingot"
+    },
+    "xp": 0.8,
+    "craft_time": 500
+}

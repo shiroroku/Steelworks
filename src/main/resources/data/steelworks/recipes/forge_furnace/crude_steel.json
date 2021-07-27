@@ -1,0 +1,40 @@
+{
+    "type": "steelworks:forge_furnace_recipe",
+    "ingredients": [
+        [
+            {
+                "item": "minecraft:iron_ingot"
+            },
+            {
+                "item": "minecraft:iron_ore"
+            }
+        ],
+        [
+            {
+                "item": "minecraft:sand"
+            },
+            {
+                "item": "minecraft:glass"
+            }
+        ],
+        [
+            {
+                "tag": "forge:dusts/coal"
+            },
+            {
+                "tag": "forge:dusts/charcoal"
+            },
+            {
+                "item": "minecraft:coal"
+            },
+            {
+                "item": "minecraft:charcoal"
+            }
+        ]
+    ],
+    "output": {
+        "item": "steelworks:crude_steel"
+    },
+    "xp": 0.5,
+    "craft_time": 300
+}

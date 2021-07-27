@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:smithing",
+    "base": {
+        "item": "minecraft:chainmail_helmet"
+    },
+    "addition": {
+        "item": "steelworks:grimsteel_ingot"
+    },
+    "result": {
+        "item": "steelworks:grim_helmet"
+    }
+}

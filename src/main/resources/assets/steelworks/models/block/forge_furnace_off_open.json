@@ -1,0 +1,6 @@
+{
+    "parent": "steelworks:block/forge_furnace_off_closed",
+    "textures": {
+        "top": "steelworks:blocks/forge_furnace_top"
+    }
+}

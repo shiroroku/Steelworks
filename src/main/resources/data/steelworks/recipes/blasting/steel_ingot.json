@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:blasting",
+    "ingredient": {
+        "item": "steelworks:crude_steel"
+    },
+    "result": "steelworks:steel_ingot",
+    "experience": 1.5,
+    "cookingtime": 100
+}

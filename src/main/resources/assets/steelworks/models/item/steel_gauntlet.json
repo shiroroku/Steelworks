@@ -1,0 +1,199 @@
+{
+    "credit": "Made with Blockbench",
+    "textures": {
+        "0": "steelworks:items/steel_gauntlet",
+        "particle": "steelworks:items/steel_gauntlet"
+    },
+    "elements": [
+        {
+            "from": [
+                5,
+                0,
+                5
+            ],
+            "to": [
+                11,
+                10,
+                11
+            ],
+            "rotation": {
+                "angle": 0,
+                "axis": "z",
+                "origin": [
+                    7,
+                    5,
+                    8
+                ]
+            },
+            "faces": {
+                "north": {
+                    "uv": [
+                        12,
+                        0,
+                        8,
+                        6.66667
+                    ],
+                    "texture": "#0"
+                },
+                "east": {
+                    "uv": [
+                        12,
+                        0,
+                        16,
+                        6.66667
+                    ],
+                    "texture": "#0"
+                },
+                "south": {
+                    "uv": [
+                        8,
+                        0,
+                        12,
+                        6.66667
+                    ],
+                    "texture": "#0"
+                },
+                "west": {
+                    "uv": [
+                        0,
+                        0,
+                        4,
+                        6.66667
+                    ],
+                    "texture": "#0"
+                },
+                "up": {
+                    "uv": [
+                        4,
+                        0,
+                        8,
+                        4
+                    ],
+                    "texture": "#0"
+                },
+                "down": {
+                    "uv": [
+                        4,
+                        4,
+                        8,
+                        8
+                    ],
+                    "texture": "#0"
+                }
+            }
+        }
+    ],
+    "display": {
+        "thirdperson_righthand": {
+            "rotation": [
+                -90,
+                0,
+                0
+            ],
+            "translation": [
+                0,
+                -2,
+                1
+            ],
+            "scale": [
+                0.75,
+                0.75,
+                0.75
+            ]
+        },
+        "thirdperson_lefthand": {
+            "rotation": [
+                -90,
+                -180,
+                0
+            ],
+            "translation": [
+                0,
+                -2,
+                1
+            ],
+            "scale": [
+                0.75,
+                0.75,
+                0.75
+            ]
+        },
+        "firstperson_righthand": {
+            "rotation": [
+                -6,
+                -85,
+                29
+            ],
+            "translation": [
+                0.75,
+                4,
+                0
+            ],
+            "scale": [
+                0.68,
+                0.68,
+                0.68
+            ]
+        },
+        "firstperson_lefthand": {
+            "rotation": [
+                -6,
+                84,
+                -27
+            ],
+            "translation": [
+                0,
+                4,
+                0
+            ],
+            "scale": [
+                0.68,
+                0.68,
+                0.68
+            ]
+        },
+        "ground": {
+            "scale": [
+                0.5,
+                0.5,
+                0.5
+            ]
+        },
+        "gui": {
+            "rotation": [
+                35,
+                9,
+                45
+            ],
+            "translation": [
+                -1.25,
+                1.5,
+                0
+            ]
+        },
+        "head": {
+            "rotation": [
+                0,
+                180,
+                0
+            ],
+            "translation": [
+                0,
+                13,
+                7
+            ]
+        },
+        "fixed": {
+            "rotation": [
+                0,
+                180,
+                45
+            ],
+            "translation": [
+                2,
+                2,
+                0
+            ]
+        }
+    }
+}

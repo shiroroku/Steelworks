@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " B ",
+        " B ",
+        " A "
+    ],
+    "key": {
+        "A": {
+            "tag": "forge:rods/wooden"
+        },
+        "B": {
+            "tag": "forge:plates/steel"
+        }
+    },
+    "result": {
+        "item": "steelworks:steel_sword"
+    }
+}

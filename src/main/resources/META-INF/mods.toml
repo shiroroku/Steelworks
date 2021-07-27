@@ -1,0 +1,25 @@
+license = "All rights reserved"
+loaderVersion = "[36,)"
+modLoader = "javafml"
+[[mods]]
+displayName = "Steelworks"
+modId = "steelworks"
+version = "${file.jarVersion}"
+# logoFile="examplemod.png"
+authors = "Raven, shiroroku(elise)"
+credits = ""
+description = '''
+descriptionnnnnnnnnnnnnnnnnnn
+'''
+[[dependencies.examplemod]]
+mandatory = true
+modId = "forge"
+ordering = "NONE"
+side = "BOTH"
+versionRange = "[36,)"
+[[dependencies.examplemod]]
+mandatory = true
+modId = "minecraft"
+ordering = "NONE"
+side = "BOTH"
+versionRange = "[1.16.5,1.17)"
