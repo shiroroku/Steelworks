@@ -1,5 +1,6 @@
 package com.steelworks.Block;
 
+import com.steelworks.Steelworks;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -45,7 +46,7 @@ public class ForgeFurnaceBlock extends Block {
 				INamedContainerProvider containerProvider = new INamedContainerProvider() {
 					@Override
 					public ITextComponent getDisplayName() {
-						return new TranslationTextComponent("block.steelworks.forge_furnace");
+						return new TranslationTextComponent("block." + Steelworks.MODID + ".forge_furnace");
 					}
 
 					@Override

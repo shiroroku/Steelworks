@@ -25,7 +25,7 @@ public class ClientMessageHandler {
 			return;
 		}
 		if (!message.initialized) {
-			LOGGER.warn("CustomParticleMessage was invalid: " + message.toString());
+			LOGGER.warn("CustomParticleMessage was invalid: " + message);
 			return;
 		}
 
