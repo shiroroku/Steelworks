@@ -3,6 +3,7 @@ package com.steelworks.Item;
 import com.steelworks.CommonSetup;
 import com.steelworks.Network.CustomParticleMessage;
 import com.steelworks.Registry.ItemRegistry;
+import com.steelworks.Steelworks;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.IItemTier;
@@ -30,8 +31,8 @@ public class GrimScythe extends SteelScythe {
 				double y2 = player.position().y + player.getEyeHeight() - 0.25;
 				double z2 = player.position().z;
 
-				float lifesteal = player.getMaxHealth() * 0.30f;
-				CommonSetup.CHANNEL.send(PacketDistributor.DIMENSION.with(() -> player.level.dimension()), new CustomParticleMessage(new ResourceLocation("steelworks", "lifesteal"), x, y, z, x2, y2, z2, (int) (lifesteal / 2)));
+				float lifesteal = player.getMaxHealth() * 0.10f;
+				CommonSetup.CHANNEL.send(PacketDistributor.DIMENSION.with(() -> player.level.dimension()), new CustomParticleMessage(new ResourceLocation(Steelworks.MODID, "lifesteal"), x, y, z, x2, y2, z2, (int) (lifesteal)));
 				player.heal(lifesteal);
 			}
 		}
