@@ -26,7 +26,6 @@ public class SenbonRenderer extends EntityRenderer<SenbonEntity> {
 			matrix.mulPose(Vector3f.YP.rotationDegrees(MathHelper.lerp(partialTicks, entity.yRotO, entity.yRot) - 90F));
 			matrix.mulPose(Vector3f.ZP.rotationDegrees(MathHelper.lerp(partialTicks, entity.xRotO, entity.xRot) + 225F));
 
-			Steelworks.LOGGER.info(partialTicks);
 			Minecraft.getInstance().getItemRenderer().renderStatic(entity.getItem(), ItemCameraTransforms.TransformType.FIXED, lighting, OverlayTexture.NO_OVERLAY, matrix, buffer);
 			matrix.popPose();
 			super.render(entity, f1, partialTicks, matrix, buffer, lighting);
