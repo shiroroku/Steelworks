@@ -63,16 +63,21 @@ public class SenbonEntity extends ProjectileItemEntity {
 
 	}
 
-	protected void onHitEntity(EntityRayTraceResult result) {
+	@Override
+	public void onHitEntity(EntityRayTraceResult result) {
 		super.onHitEntity(result);
 		result.getEntity().hurt(DamageSource.thrown(this, this.getOwner()), 3.0f);
 	}
 
-	protected void onHit(RayTraceResult result) {
+	@Override
+	public void onHit(RayTraceResult result) {
 		super.onHit(result);
-		if (!this.level.isClientSide) {
-			this.level.broadcastEntityEvent(this, (byte) 3);
+		if (result.getType() == RayTraceResult.Type.BLOCK) {
+			if (!this.level.isClientSide) {
+				this.level.broadcastEntityEvent(this, (byte) 3);
+				this.remove();
+			}
+			this.level.playSound(null, this.getX(), this.getY(), this.getZ(), SoundEvents.ITEM_BREAK, SoundCategory.NEUTRAL, 0.25F, random.nextFloat() * 0.5F + 3F);
 		}
-		this.level.playSound(null, this.getX(), this.getY(), this.getZ(), SoundEvents.ITEM_BREAK, SoundCategory.NEUTRAL, 0.25F, random.nextFloat() * 0.5F + 3F);
 	}
 }
