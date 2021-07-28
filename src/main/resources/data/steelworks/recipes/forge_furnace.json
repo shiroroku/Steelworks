@@ -1,22 +1,22 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "AAA",
-    "BCB",
-    "ABA"
-  ],
-  "key": {
-    "A": {
-      "item": "minecraft:iron_ingot"
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "AAA",
+        "BCB",
+        "ABA"
+    ],
+    "key": {
+        "A": {
+            "item": "minecraft:iron_ingot"
+        },
+        "B": {
+            "item": "minecraft:iron_block"
+        },
+        "C": {
+            "item": "minecraft:cauldron"
+        }
     },
-    "B": {
-      "item": "minecraft:iron_block"
-    },
-    "C": {
-      "item": "minecraft:cauldron"
+    "result": {
+        "item": "steelworks:forge_furnace"
     }
-  },
-  "result": {
-    "item": "steelworks:forge_furnace"
-  }
 }

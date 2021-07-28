@@ -1,19 +1,18 @@
 {
     "type": "minecraft:crafting_shaped",
     "pattern": [
-        "BBB",
-        "BAB",
-        " A "
+        " B",
+        "A "
     ],
     "key": {
         "A": {
             "tag": "forge:rods/wooden"
         },
         "B": {
-            "tag": "forge:ingots/steel"
+            "tag": "forge:nuggets/steel"
         }
     },
     "result": {
-        "item": "steelworks:steel_hammer"
+        "item": "steelworks:senbon"
     }
 }

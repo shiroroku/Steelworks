@@ -44,6 +44,7 @@ public class ItemRegistry {
 	public static RegistryObject<Item> STEEL_SCYTHE = ITEMS.register("steel_scythe", () -> new SteelScythe(new SteelItemTier(), 4, -2.8F, new Item.Properties().tab(Steelworks.CREATIVETAB)));
 	public static RegistryObject<Item> STEEL_SWORD = ITEMS.register("steel_sword", () -> new SteelSwordItem(new SteelItemTier(), 5, -3.0F, new Item.Properties().tab(Steelworks.CREATIVETAB)));
 	public static RegistryObject<Item> STEEL_WRENCH = ITEMS.register("steel_wrench", () -> new SteelWrench(new SteelItemTier(), new Item.Properties().tab(Steelworks.CREATIVETAB)));
+	public static RegistryObject<Item> SENBON = ITEMS.register("senbon", () -> new SenbonItem(new Item.Properties().tab(Steelworks.CREATIVETAB)));
 
 	public static void init() {
 		ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());

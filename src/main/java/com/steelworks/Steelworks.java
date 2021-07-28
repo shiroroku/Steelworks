@@ -27,6 +27,7 @@ public class Steelworks {
 		RecipeRegistry.init();
 		EffectRegistry.init();
 		ParticleRegistry.init();
+		EntityRegistry.init();
 		Events.init();
 
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(CommonSetup::init);

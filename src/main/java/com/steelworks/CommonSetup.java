@@ -11,7 +11,7 @@ import net.minecraftforge.fml.network.simple.SimpleChannel;
 
 import java.util.Optional;
 
-@Mod.EventBusSubscriber(modid = Steelworks.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber(modid = Steelworks.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class CommonSetup {
 
 	public static SimpleChannel CHANNEL;

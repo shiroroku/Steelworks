@@ -1,7 +1,9 @@
 package com.steelworks;
 
+import com.steelworks.Entity.SenbonRenderer;
 import com.steelworks.Item.SteelWrench;
 import com.steelworks.Particle.LifestealParticle;
+import com.steelworks.Registry.EntityRegistry;
 import com.steelworks.Registry.ItemRegistry;
 import com.steelworks.Registry.ParticleRegistry;
 import com.steelworks.Registry.ScreenRegistry;
@@ -14,6 +16,7 @@ import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
@@ -24,6 +27,8 @@ public class ClientSetup {
 		MinecraftForge.EVENT_BUS.addListener(ClientSetup::onBlockOutline);
 		ScreenRegistry.init();
 		event.enqueueWork(() -> ItemModelsProperties.register(ItemRegistry.STEEL_SWORD.get(), new ResourceLocation(Steelworks.MODID, "blocking"), (stack, world, living) -> living != null && living.isUsingItem() && living.getUseItem() == stack ? 1.0F : 0.0F));
+
+		RenderingRegistry.registerEntityRenderingHandler(EntityRegistry.SENBON.get(), SenbonRenderer::new);
 	}
 
 	public static void onBlockOutline(DrawHighlightEvent.HighlightBlock e) {
