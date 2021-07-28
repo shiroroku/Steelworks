@@ -7,6 +7,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShovelItem;
 import net.minecraftforge.common.ToolType;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class SteelPick extends ShovelItem {
 	public SteelPick(IItemTier tiered, int damage, float speed, Properties prop) {
 		super(tiered, damage, speed, prop);
@@ -26,4 +29,13 @@ public class SteelPick extends ShovelItem {
 		Material mat = state.getMaterial();
 		return mat != Material.METAL && mat != Material.HEAVY_METAL && mat != Material.STONE ? super.getDestroySpeed(stack, state) : this.speed;
 	}
+
+	@Override
+	public java.util.Set<net.minecraftforge.common.ToolType> getToolTypes(ItemStack stack) {
+		Set<ToolType> set = new HashSet<>();
+		set.add(ToolType.PICKAXE);
+		set.add(ToolType.SHOVEL);
+		return set;
+	}
+
 }
