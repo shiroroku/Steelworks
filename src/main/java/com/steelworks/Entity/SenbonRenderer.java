@@ -1,7 +1,6 @@
 package com.steelworks.Entity;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.steelworks.Steelworks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.EntityRenderer;
@@ -23,8 +22,8 @@ public class SenbonRenderer extends EntityRenderer<SenbonEntity> {
 		if (entity.tickCount >= 2 || !(this.entityRenderDispatcher.camera.getEntity().distanceToSqr(entity) < 12.25D)) {
 			matrix.pushPose();
 
-			matrix.mulPose(Vector3f.YP.rotationDegrees(MathHelper.lerp(partialTicks, entity.yRotO, entity.yRot) - 90F));
-			matrix.mulPose(Vector3f.ZP.rotationDegrees(MathHelper.lerp(partialTicks, entity.xRotO, entity.xRot) + 225F));
+			matrix.mulPose(Vector3f.YP.rotationDegrees(MathHelper.lerp(partialTicks, entity.yRotOCapture, entity.yRotCapture) - 90F));
+			matrix.mulPose(Vector3f.ZP.rotationDegrees(MathHelper.lerp(partialTicks, entity.xRotOCapture, entity.xRotCapture) + 225F));
 
 			Minecraft.getInstance().getItemRenderer().renderStatic(entity.getItem(), ItemCameraTransforms.TransformType.FIXED, lighting, OverlayTexture.NO_OVERLAY, matrix, buffer);
 			matrix.popPose();

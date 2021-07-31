@@ -22,7 +22,7 @@ public class SenbonItem extends Item {
 		if (!world.isClientSide) {
 			SenbonEntity senbon = new SenbonEntity(world, player);
 			senbon.setItem(itemstack);
-			senbon.shootFromRotation(player, player.xRot, player.yRot, 0F, 1.5F, 1.5F);
+			senbon.shootFromRotation(player, player.xRot, player.yRot, 0F, 1.2F, 1.2F);
 			world.addFreshEntity(senbon);
 		}
 

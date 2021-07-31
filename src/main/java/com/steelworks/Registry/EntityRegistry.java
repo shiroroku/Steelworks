@@ -12,7 +12,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class EntityRegistry {
 	public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, Steelworks.MODID);
 
-	public static final RegistryObject<EntityType<SenbonEntity>> SENBON = ENTITIES.register("senbon", () -> EntityType.Builder.<SenbonEntity>of(SenbonEntity::new, EntityClassification.MISC).build("senbon"));
+	public static final RegistryObject<EntityType<SenbonEntity>> SENBON = ENTITIES.register("senbon", () -> EntityType.Builder.<SenbonEntity>of(SenbonEntity::new, EntityClassification.MISC).sized(0.8f, 0.8f).build("senbon"));
 
 	public static void init() {
 		ENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());
