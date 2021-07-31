@@ -51,7 +51,7 @@ public class JEICompat implements IModPlugin {
 
 	private List<ForgeFurnaceRecipeWrapper> convertCrucibleRecipes() {
 		List<ForgeFurnaceRecipeWrapper> recipesconverted = new ArrayList<>();
-		for (final ForgeFurnaceRecipe recipe : Minecraft.getInstance().level.getRecipeManager().getAllRecipesFor(RecipeRegistry.FORGE_FURNACE_TYPE)) {
+		for (final ForgeFurnaceRecipe recipe : Minecraft.getInstance().level.getRecipeManager().getAllRecipesFor(ForgeFurnaceRecipe.TYPE)) {
 			List<List<ItemStack>> stacks = new ArrayList<>();
 			for (Ingredient ing : recipe.getIngredients()) {
 				stacks.add(Arrays.asList(ing.getItems()));

@@ -128,7 +128,7 @@ public class ForgeFurnaceTileEntity extends TileEntity implements ITickableTileE
 	 */
 	public ForgeFurnaceRecipe getRecipeFromContents() {
 		ForgeFurnaceRecipe tocraft = null;
-		for (final ForgeFurnaceRecipe recipe : level.getRecipeManager().getAllRecipesFor(RecipeRegistry.FORGE_FURNACE_TYPE)) {
+		for (final ForgeFurnaceRecipe recipe : level.getRecipeManager().getAllRecipesFor(ForgeFurnaceRecipe.TYPE)) {
 			if (recipe.matches(itemhandler)) {
 				tocraft = recipe;
 				break;

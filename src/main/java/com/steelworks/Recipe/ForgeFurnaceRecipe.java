@@ -17,6 +17,8 @@ import net.minecraftforge.registries.ForgeRegistryEntry;
 
 public class ForgeFurnaceRecipe implements IRecipe<IInventory> {
 
+	public static final IRecipeType<ForgeFurnaceRecipe> TYPE = IRecipeType.register("forge_furnace_recipe");
+
 	private final ResourceLocation ID;
 	private final NonNullList<Ingredient> INPUTS;
 	private final ItemStack OUTPUT;
@@ -120,7 +122,7 @@ public class ForgeFurnaceRecipe implements IRecipe<IInventory> {
 
 	@Override
 	public IRecipeType<?> getType() {
-		return RecipeRegistry.FORGE_FURNACE_TYPE;
+		return TYPE;
 	}
 
 	public int getCraftTime() {
