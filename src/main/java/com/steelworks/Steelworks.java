@@ -3,10 +3,7 @@ package com.steelworks;
 import com.steelworks.Registry.*;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Effects;
-import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -26,9 +23,9 @@ public class Steelworks {
 		ContainerRegistry.init();
 		RecipeRegistry.init();
 		EffectRegistry.init();
-		ParticleRegistry.init();
 		EntityRegistry.init();
 		Events.init();
+		ParticleRegistry.init();
 
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(CommonSetup::init);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientSetup::init);

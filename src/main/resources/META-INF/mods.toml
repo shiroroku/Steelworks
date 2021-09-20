@@ -6,18 +6,18 @@ displayName = "Steelworks"
 modId = "steelworks"
 version = "${file.jarVersion}"
 # logoFile="examplemod.png"
-authors = "Raven, shiroroku(elise)"
+authors = "Lilith, shiroroku"
 credits = ""
 description = '''
 descriptionnnnnnnnnnnnnnnnnnn
 '''
-[[dependencies.examplemod]]
+[[dependencies.steelworks]]
 mandatory = true
 modId = "forge"
 ordering = "NONE"
 side = "BOTH"
 versionRange = "[36,)"
-[[dependencies.examplemod]]
+[[dependencies.steelworks]]
 mandatory = true
 modId = "minecraft"
 ordering = "NONE"
