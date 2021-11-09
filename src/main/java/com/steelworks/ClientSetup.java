@@ -27,6 +27,7 @@ public class ClientSetup {
 		MinecraftForge.EVENT_BUS.addListener(ClientSetup::onBlockOutline);
 		ScreenRegistry.init();
 		event.enqueueWork(() -> ItemModelsProperties.register(ItemRegistry.STEEL_SWORD.get(), new ResourceLocation(Steelworks.MODID, "blocking"), (stack, world, living) -> living != null && living.isUsingItem() && living.getUseItem() == stack ? 1.0F : 0.0F));
+		event.enqueueWork(() -> ItemModelsProperties.register(ItemRegistry.GRIM_SCYTHE.get(), new ResourceLocation(Steelworks.MODID, "charging"), (stack, world, living) -> living != null && living.isUsingItem() && living.getUseItem() == stack ? 1.0F : 0.0F));
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityRegistry.SENBON.get(), SenbonRenderer::new);
 	}

@@ -9,6 +9,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.UseAction;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
@@ -36,6 +37,13 @@ public class GrimScythe extends SteelScythe {
 			//todo Grim Scythe charge up
 
 		}
+	}
+
+	@Override
+	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+		ItemStack itemstack = player.getItemInHand(hand);
+		player.startUsingItem(hand);
+		return ActionResult.consume(itemstack);
 	}
 
 	public static void handleLivingDeath(LivingDeathEvent e) {

@@ -2,5 +2,13 @@
     "parent": "item/handheld",
     "textures": {
         "layer0": "steelworks:items/grim_scythe"
-    }
+    },
+    "overrides": [
+        {
+            "predicate": {
+                "steelworks:charging": 1.0
+            },
+            "model": "steelworks:item/grim_scythe_charged"
+        }
+    ]
 }

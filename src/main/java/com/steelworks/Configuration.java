@@ -22,7 +22,6 @@ import java.util.Map;
 public class Configuration {
 
 	public static ForgeConfigSpec COMMON_CONFIG;
-	public static ForgeConfigSpec.ConfigValue<List<String>> HEAT_MULTIPLIERS;
 
 	static {
 		ForgeConfigSpec.Builder commonBuilder = new ForgeConfigSpec.Builder();
