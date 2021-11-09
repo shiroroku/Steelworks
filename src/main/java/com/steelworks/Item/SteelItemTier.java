@@ -17,7 +17,7 @@ public class SteelItemTier implements IItemTier {
 
 	@Override
 	public float getAttackDamageBonus() {
-		return 2f;
+		return 2.5f;
 	}
 
 	@Override
