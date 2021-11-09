@@ -35,7 +35,7 @@ public class HammerRepairRecipe extends SpecialRecipe {
 		boolean flag_repairable = false;
 
 		for (ItemStack item : items) {
-			if (item.getItem() == ItemRegistry.STEEL_HAMMER.get()) {
+			if (item.getItem() == ItemRegistry.GRIMSTEEL_HAMMER.get()) {
 				flag_hammer = true;
 			} else {
 				if (item.isRepairable()) {
