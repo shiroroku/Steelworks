@@ -1,13 +1,16 @@
 package com.steelworks;
 
 import com.steelworks.Data.DataConfigJsonReloader;
+import com.steelworks.Effect.BleedEffect;
 import com.steelworks.Effect.RageEffect;
 import com.steelworks.Item.GrimScythe;
 import com.steelworks.Item.SteelScythe;
+import com.steelworks.Registry.EffectRegistry;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.PotionEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 
 public class Events {
@@ -20,6 +23,7 @@ public class Events {
 
 	public static void onLivingDamage(LivingDamageEvent e) {
 		RageEffect.handleLivingDamage(e);
+		BleedEffect.handleLivingDamage(e);
 	}
 
 	public static void onLivingDeath(LivingDeathEvent e) {
