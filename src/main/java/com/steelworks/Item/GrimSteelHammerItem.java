@@ -5,10 +5,10 @@ import net.minecraft.item.ItemStack;
 
 import java.util.Random;
 
-public class SteelHammerItem extends Item {
+public class GrimSteelHammerItem extends Item {
 	private static final Random rand = new Random();
 
-	public SteelHammerItem(Properties prop) {
+	public GrimSteelHammerItem(Properties prop) {
 		super(prop);
 	}
 

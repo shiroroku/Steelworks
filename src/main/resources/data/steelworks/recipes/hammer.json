@@ -10,10 +10,10 @@
             "tag": "forge:rods/wooden"
         },
         "B": {
-            "tag": "forge:ingots/steel"
+            "item": "steelworks:grimsteel_ingot"
         }
     },
     "result": {
-        "item": "steelworks:steel_hammer"
+        "item": "steelworks:grimsteel_hammer"
     }
 }

@@ -1,0 +1,25 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "steelworks:items/grim_scythe_charged"
+    },
+    "display": {
+        "firstperson_righthand": {
+            "rotation": [
+                0,
+                0,
+                0
+            ],
+            "translation": [
+                0,
+                0,
+                0
+            ],
+            "scale": [
+                0.68,
+                0.68,
+                0.68
+            ]
+        }
+    }
+}

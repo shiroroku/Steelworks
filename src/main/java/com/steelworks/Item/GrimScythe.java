@@ -8,9 +8,12 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.UseAction;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.fml.network.PacketDistributor;
 
@@ -18,6 +21,29 @@ public class GrimScythe extends SteelScythe {
 
 	public GrimScythe(IItemTier tier, int damage, float speed, Properties prop) {
 		super(tier, damage, speed, prop);
+	}
+
+	public int getUseDuration(ItemStack stack) {
+		return 72000;
+	}
+
+	public UseAction getUseAnimation(ItemStack stack) {
+		return UseAction.SPEAR;
+	}
+
+	public void releaseUsing(ItemStack stack, World world, LivingEntity living, int tick) {
+		if (living instanceof PlayerEntity) {
+			PlayerEntity playerentity = (PlayerEntity) living;
+			//todo Grim Scythe charge up
+
+		}
+	}
+
+	@Override
+	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+		ItemStack itemstack = player.getItemInHand(hand);
+		player.startUsingItem(hand);
+		return ActionResult.consume(itemstack);
 	}
 
 	public static void handleLivingDeath(LivingDeathEvent e) {
@@ -40,6 +66,6 @@ public class GrimScythe extends SteelScythe {
 
 	@Override
 	public ActionResultType interactLivingEntity(ItemStack stack, PlayerEntity player, LivingEntity entity, Hand hand) {
-		return ActionResultType.PASS;
+		return super.interactLivingEntity(stack, player, entity, hand);
 	}
 }

@@ -5,7 +5,6 @@ import com.steelworks.Registry.RecipeRegistry;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.SpecialRecipe;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
@@ -14,10 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HammerRepairRecipe extends SpecialRecipe {
-
-	//public static final IRecipeSerializer<?> SERIALIZER = new SpecialRecipeSerializer<>(HammerRepairRecipe::new).setRegistryName(Steelworks.MODID, "hammer_repair");
-
-	//public static final IRecipeType<HammerRepairRecipe> TYPE = IRecipeType.register("hammer_repair");
 
 	public HammerRepairRecipe(ResourceLocation recipe) {
 		super(recipe);
@@ -40,7 +35,7 @@ public class HammerRepairRecipe extends SpecialRecipe {
 		boolean flag_repairable = false;
 
 		for (ItemStack item : items) {
-			if (item.getItem() == ItemRegistry.STEEL_HAMMER.get()) {
+			if (item.getItem() == ItemRegistry.GRIMSTEEL_HAMMER.get()) {
 				flag_hammer = true;
 			} else {
 				if (item.isRepairable()) {
@@ -84,12 +79,6 @@ public class HammerRepairRecipe extends SpecialRecipe {
 
 	@Override
 	public IRecipeSerializer<?> getSerializer() {
-		return null;//RecipeRegistry.HAMMER_REPAIR_SERIALIZER.get();
+		return RecipeRegistry.HAMMER_REPAIR_SERIALIZER.get();
 	}
-/*
-	@Override
-	public IRecipeType<?> getType() {
-		return TYPE;
-	}*/
-
 }

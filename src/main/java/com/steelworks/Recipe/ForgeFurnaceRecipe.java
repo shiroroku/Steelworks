@@ -2,7 +2,6 @@ package com.steelworks.Recipe;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import com.steelworks.Registry.RecipeRegistry;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.*;
@@ -18,6 +17,7 @@ import net.minecraftforge.registries.ForgeRegistryEntry;
 public class ForgeFurnaceRecipe implements IRecipe<IInventory> {
 
 	public static final IRecipeType<ForgeFurnaceRecipe> TYPE = IRecipeType.register("forge_furnace_recipe");
+	public static final Serializer SERIALIZER = new Serializer();
 
 	private final ResourceLocation ID;
 	private final NonNullList<Ingredient> INPUTS;
@@ -117,7 +117,7 @@ public class ForgeFurnaceRecipe implements IRecipe<IInventory> {
 
 	@Override
 	public IRecipeSerializer<?> getSerializer() {
-		return RecipeRegistry.FORGE_FURNACE_SERIALIZER.get();
+		return SERIALIZER;
 	}
 
 	@Override
@@ -129,11 +129,7 @@ public class ForgeFurnaceRecipe implements IRecipe<IInventory> {
 		return this.CRAFTTIME;
 	}
 
-	public static class Serializer<C> extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<ForgeFurnaceRecipe> {
-
-		public Serializer() {
-			//this.setRegistryName(new ResourceLocation(Steelworks.MODID, "crucible_recipe"));
-		}
+	public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<ForgeFurnaceRecipe> {
 
 		@Override
 		public ForgeFurnaceRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
@@ -166,9 +162,9 @@ public class ForgeFurnaceRecipe implements IRecipe<IInventory> {
 			for (int i = 0; i < inputStacks.size(); ++i) {
 				inputStacks.set(i, Ingredient.fromNetwork(buffer));
 			}
-			ItemStack outputStack = buffer.readItem();
 			float xp = buffer.readFloat();
 			int craftTime = buffer.readInt();
+			ItemStack outputStack = buffer.readItem();
 			return new ForgeFurnaceRecipe(recipeId, inputStacks, outputStack, xp, craftTime);
 		}
 
