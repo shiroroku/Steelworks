@@ -2,6 +2,7 @@ package com.steelworks;
 
 import com.steelworks.Effect.BleedEffect;
 import com.steelworks.Entity.SenbonRenderer;
+import com.steelworks.Entity.ShurikenRenderer;
 import com.steelworks.Item.SteelWrench;
 import com.steelworks.Particle.LifestealParticle;
 import com.steelworks.Registry.EntityRegistry;
@@ -33,6 +34,8 @@ public class ClientSetup {
 		event.enqueueWork(() -> ItemModelsProperties.register(ItemRegistry.GRIM_SCYTHE.get(), new ResourceLocation(Steelworks.MODID, "charging"), (stack, world, living) -> living != null && living.isUsingItem() && living.getUseItem() == stack ? 1.0F : 0.0F));
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityRegistry.SENBON.get(), SenbonRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityRegistry.SHURIKEN.get(), ShurikenRenderer::new);
+
 	}
 
 	public static void onRenderGameOverlay(RenderGameOverlayEvent.Post e) {
