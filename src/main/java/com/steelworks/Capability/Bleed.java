@@ -35,13 +35,12 @@ public class Bleed {
 	}
 
 	public static void handleLivingUpdate(LivingEvent.LivingUpdateEvent e) {
+
 		if (e.getEntity().tickCount % (20 * decayInterval) == 0) {
 			Bleed target_bleed = e.getEntityLiving().getCapability(BleedCapability.CAPABILITY).orElse(null);
 			if (target_bleed != null) {
 				if (target_bleed.getStacks() > 0) {
-					Steelworks.LOGGER.info("bleed was: " + target_bleed.getStacks());
 					target_bleed.setStacks(target_bleed.getStacks() - 1, e.getEntityLiving());
-					Steelworks.LOGGER.info("now: " + target_bleed.getStacks());
 				}
 			}
 		}
@@ -61,9 +60,7 @@ public class Bleed {
 					if (target_bleed == null) {
 						Steelworks.LOGGER.error("Bleed capability missing from entity!");
 					} else {
-						Steelworks.LOGGER.info("bleed was: " + target_bleed.getStacks());
 						target_bleed.setStacks(amt + target_bleed.getStacks(), e.getEntityLiving());
-						Steelworks.LOGGER.info("now: " + target_bleed.getStacks());
 					}
 				}
 			}

@@ -1,9 +1,16 @@
 package com.steelworks.Network;
 
+import com.steelworks.Capability.Bleed;
+import com.steelworks.Capability.BleedCapability;
+import com.steelworks.CommonSetup;
+import com.steelworks.Render.BleedHUDRenderer;
 import net.minecraft.client.world.ClientWorld;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.LogicalSidedProvider;
 import net.minecraftforge.fml.network.NetworkEvent;
+import net.minecraftforge.fml.network.PacketDistributor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -13,8 +20,6 @@ import java.util.function.Supplier;
 public class BleedClientMessageHandler {
 
 	private static final Logger LOGGER = LogManager.getLogger();
-
-	public static int ClientBleedstacks = 0;
 
 	public static void onMessageReceived(final BleedUpdateMessage message, Supplier<NetworkEvent.Context> ctxSupplier) {
 		NetworkEvent.Context ctx = ctxSupplier.get();
@@ -38,6 +43,18 @@ public class BleedClientMessageHandler {
 	}
 
 	private static void processMessage(ClientWorld worldClient, BleedUpdateMessage message) {
-		ClientBleedstacks = message.stacks;
+		BleedHUDRenderer.recieveUpdate(worldClient, message);
+	}
+
+	/***
+	 * Syncs bleed to the client when they login.
+	 */
+	public static void handleOnPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent e) {
+		if (!e.getPlayer().level.isClientSide) {
+			Bleed player_bleed = e.getEntityLiving().getCapability(BleedCapability.CAPABILITY).orElse(null);
+			if (player_bleed != null) {
+				CommonSetup.CHANNEL.send(PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity) e.getPlayer()), new BleedUpdateMessage(player_bleed.getStacks()));
+			}
+		}
 	}
 }
