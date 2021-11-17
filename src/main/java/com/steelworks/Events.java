@@ -38,7 +38,7 @@ public class Events {
 	}
 
 	public static void onLivingUpdate(LivingEvent.LivingUpdateEvent e) {
-		//Bleed.handleLivingUpdate(e);
+		Bleed.handleLivingUpdate(e);
 	}
 
 	public static void onPlayerAttack(AttackEntityEvent e) {
