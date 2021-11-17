@@ -22,7 +22,7 @@ public class ShurikenItem extends Item {
 		if (!world.isClientSide) {
 			if (player.isCrouching() && itemstack.getCount() >= 3) {
 
-				float spread = 30f;
+				float spread = 20f;
 				for (int i = -1; i < 2; i++) {
 					ShurikenEntity shuriken = new ShurikenEntity(world, player);
 					shuriken.setHorizontal(true);

@@ -29,7 +29,7 @@ public class ShurikenRenderer extends EntityRenderer<ShurikenEntity> {
 				matrix.mulPose(Vector3f.XP.rotationDegrees(90F));
 			}
 
-			if (!entity.isOnGround) {
+			if (!entity.isStationary()) {
 				matrix.mulPose(Vector3f.ZP.rotationDegrees(entity.xRotCapture * entity.tickCount * 360F));
 			}
 			Minecraft.getInstance().getItemRenderer().renderStatic(entity.getItem(), ItemCameraTransforms.TransformType.FIXED, lighting, OverlayTexture.NO_OVERLAY, matrix, buffer);
