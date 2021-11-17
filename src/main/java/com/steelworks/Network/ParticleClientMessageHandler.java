@@ -12,7 +12,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-public class ClientMessageHandler {
+public class ParticleClientMessageHandler {
 
 	private static final Logger LOGGER = LogManager.getLogger();
 

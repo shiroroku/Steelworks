@@ -1,0 +1,108 @@
+package com.steelworks.Capability;
+
+import com.steelworks.CommonSetup;
+import com.steelworks.Network.BleedUpdateMessage;
+import com.steelworks.Steelworks;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.INBT;
+import net.minecraft.nbt.IntNBT;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.Direction;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.fml.network.PacketDistributor;
+
+public class Bleed {
+
+	private int stacks;
+	private static final float decayInterval = 4;
+	private static final int maxStacks = 10;
+	private static final float bleedDamage = 0.2f;
+
+	public Bleed() {
+		this(0);
+	}
+
+	public Bleed(int stacks) {
+		this.stacks = stacks;
+	}
+
+	public static Bleed create() {
+		return new Bleed();
+	}
+
+	public static void handleLivingUpdate(LivingEvent.LivingUpdateEvent e) {
+		if (e.getEntity().tickCount % (20 * decayInterval) == 0) {
+			Bleed target_bleed = e.getEntityLiving().getCapability(BleedCapability.CAPABILITY).orElse(null);
+			if (target_bleed != null) {
+				if (target_bleed.getStacks() > 0) {
+					Steelworks.LOGGER.info("bleed was: " + target_bleed.getStacks());
+					target_bleed.setStacks(target_bleed.getStacks() - 1, e.getEntityLiving());
+					Steelworks.LOGGER.info("now: " + target_bleed.getStacks());
+				}
+			}
+		}
+	}
+
+	public static void handleLivingDamage(LivingDamageEvent e) {
+		if (e.getSource().getEntity() != null) {
+			if (e.getSource().getEntity() instanceof LivingEntity) {
+
+				LivingEntity attacker = (LivingEntity) e.getSource().getEntity();
+				ItemStack heldItem = attacker.getMainHandItem();
+				if (heldItem.hasTag() && heldItem.getTag().contains("bleed_damage") && heldItem.getTag().getInt("bleed_damage") > 0) {
+					int amt = heldItem.getTag().getInt("bleed_damage");
+
+					Bleed target_bleed = e.getEntityLiving().getCapability(BleedCapability.CAPABILITY).orElse(null);
+
+					if (target_bleed == null) {
+						Steelworks.LOGGER.error("Bleed capability missing from entity!");
+					} else {
+						Steelworks.LOGGER.info("bleed was: " + target_bleed.getStacks());
+						target_bleed.setStacks(amt + target_bleed.getStacks(), e.getEntityLiving());
+						Steelworks.LOGGER.info("now: " + target_bleed.getStacks());
+					}
+				}
+			}
+		}
+	}
+
+	public void setStacks(int stacks, LivingEntity entity) {
+		if (entity != null) {
+			if (stacks >= maxStacks) {
+				stacks = 0;
+				entity.hurt(DamageSource.GENERIC, entity.getMaxHealth() * bleedDamage);
+			}
+		}
+
+		this.stacks = stacks;
+		if (entity instanceof ServerPlayerEntity) {
+			CommonSetup.CHANNEL.send(PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity) entity), new BleedUpdateMessage(stacks));
+		}
+	}
+
+	public int getStacks() {
+		return stacks;
+	}
+
+	public static class NBTStorage implements Capability.IStorage<Bleed> {
+
+		@Override
+		public INBT writeNBT(Capability<Bleed> capability, Bleed instance, Direction side) {
+			return IntNBT.valueOf(instance.stacks);
+		}
+
+		@Override
+		public void readNBT(Capability<Bleed> capability, Bleed instance, Direction side, INBT nbt) {
+			int stacks = 0;
+			if (nbt.getType() == IntNBT.TYPE) {
+				stacks = ((IntNBT) nbt).getAsInt();
+			}
+			instance.setStacks(stacks, null);
+		}
+	}
+
+}

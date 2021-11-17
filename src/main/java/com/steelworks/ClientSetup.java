@@ -1,6 +1,5 @@
 package com.steelworks;
 
-import com.steelworks.Effect.BleedEffect;
 import com.steelworks.Entity.SenbonRenderer;
 import com.steelworks.Entity.ShurikenRenderer;
 import com.steelworks.Item.SteelWrench;
@@ -9,6 +8,7 @@ import com.steelworks.Registry.EntityRegistry;
 import com.steelworks.Registry.ItemRegistry;
 import com.steelworks.Registry.ParticleRegistry;
 import com.steelworks.Registry.ScreenRegistry;
+import com.steelworks.Render.BleedHUDRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemModelsProperties;
 import net.minecraft.util.ResourceLocation;
@@ -39,7 +39,7 @@ public class ClientSetup {
 	}
 
 	public static void onRenderGameOverlay(RenderGameOverlayEvent.Post e) {
-		BleedEffect.renderBleedHUD(e);
+		BleedHUDRenderer.renderBleedHUD(e);
 	}
 
 	public static void onBlockOutline(DrawHighlightEvent.HighlightBlock e) {
