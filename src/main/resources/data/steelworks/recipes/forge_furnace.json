@@ -3,17 +3,20 @@
     "pattern": [
         "AAA",
         "BCB",
-        "ABA"
+        "ADA"
     ],
     "key": {
         "A": {
             "item": "minecraft:iron_ingot"
         },
         "B": {
-            "item": "minecraft:iron_block"
+            "item": "minecraft:iron_trapdoor"
         },
         "C": {
-            "item": "minecraft:cauldron"
+            "item": "minecraft:flower_pot"
+        },
+        "D": {
+            "item": "minecraft:iron_block"
         }
     },
     "result": {

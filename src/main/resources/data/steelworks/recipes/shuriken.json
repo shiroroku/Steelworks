@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " A ",
+    "A A",
+    " A "
+  ],
+  "key": {
+    "A": {
+      "tag": "forge:nuggets/steel"
+    }
+  },
+  "result": {
+    "item": "steelworks:shuriken",
+    "count": 4
+  }
+}

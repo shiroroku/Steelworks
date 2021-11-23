@@ -35,6 +35,7 @@ public class ItemRegistry {
 	public static RegistryObject<Item> STEEL_GAUNTLET = ITEMS.register("steel_gauntlet", () -> new SteelGauntletItem(new SteelItemTier(), 1, 0.5F, new Item.Properties().tab(Steelworks.CREATIVETAB)));
 	public static RegistryObject<Item> GRIMSTEEL_HAMMER = ITEMS.register("grimsteel_hammer", () -> new GrimSteelHammerItem(new Item.Properties().tab(Steelworks.CREATIVETAB).durability(64).setNoRepair()));
 	public static RegistryObject<Item> STEEL_INGOT = ITEMS.register("steel_ingot", () -> new Item(new Item.Properties().tab(Steelworks.CREATIVETAB)));
+	public static RegistryObject<Item> CLARITE = ITEMS.register("clarite", () -> new Item(new Item.Properties().tab(Steelworks.CREATIVETAB)));
 	public static RegistryObject<Item> STEEL_KNIFE = ITEMS.register("steel_knife", () -> new SwordItem(new SteelItemTier(), 1, -1.8F, new Item.Properties().tab(ModList.get().isLoaded("farmersdelight") ? Steelworks.CREATIVETAB : null)));
 	public static RegistryObject<Item> STEEL_NUGGET = ITEMS.register("steel_nugget", () -> new Item(new Item.Properties().tab(Steelworks.CREATIVETAB)));
 	public static RegistryObject<Item> STEEL_PICKAXE = ITEMS.register("steel_pickaxe", () -> new PickaxeItem(new SteelItemTier(), 2, -3.0F, new Item.Properties().tab(Steelworks.CREATIVETAB)));
