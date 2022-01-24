@@ -1,6 +1,8 @@
 package com.steelworks.Item;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.CropsBlock;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
@@ -14,6 +16,7 @@ import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
@@ -60,10 +63,24 @@ public class SteelScythe extends HoeItem {
 	public ActionResultType useOn(ItemUseContext ctx) {
 		World world = ctx.getLevel();
 		BlockState block = world.getBlockState(ctx.getClickedPos());
-		if (!world.isClientSide && block.getBlock() instanceof CropsBlock && block.getValue(((CropsBlock) block.getBlock()).getAgeProperty()) >= ((CropsBlock) block.getBlock()).getMaxAge()) {
+		if (block.getBlock() instanceof CropsBlock && block.getValue(((CropsBlock) block.getBlock()).getAgeProperty()) >= ((CropsBlock) block.getBlock()).getMaxAge()) {
 			world.destroyBlock(ctx.getClickedPos(), true);
 			world.setBlock(ctx.getClickedPos(), block.getBlock().defaultBlockState(), 3);
 			ctx.getItemInHand().hurtAndBreak(1, ctx.getPlayer(), (player) -> player.broadcastBreakEvent(ctx.getHand()));
+
+			for (int x = -1; x < 2; x++) {
+				for (int y = -1; y < 2; y++) {
+					BlockPos p = ctx.getClickedPos().offset(x, 0, y);
+					block = world.getBlockState(p);
+					if (block.getBlock() instanceof CropsBlock && block.getValue(((CropsBlock) block.getBlock()).getAgeProperty()) >= ((CropsBlock) block.getBlock()).getMaxAge()) {
+						world.destroyBlock(p, true);
+						world.setBlock(p, block.getBlock().defaultBlockState(), 3);
+						world.globalLevelEvent(2001, p, Block.getId(block.getBlock().defaultBlockState()));
+						ctx.getItemInHand().hurtAndBreak(1, ctx.getPlayer(), (player) -> player.broadcastBreakEvent(ctx.getHand()));
+					}
+				}
+			}
+
 		}
 		return super.useOn(ctx);
 	}
