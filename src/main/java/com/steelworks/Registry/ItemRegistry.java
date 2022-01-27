@@ -1,7 +1,9 @@
 package com.steelworks.Registry;
 
+import com.google.common.collect.Sets;
 import com.steelworks.Item.*;
 import com.steelworks.Steelworks;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraftforge.fml.ModList;
@@ -36,7 +38,18 @@ public class ItemRegistry {
 	public static RegistryObject<Item> GRIMSTEEL_HAMMER = ITEMS.register("grimsteel_hammer", () -> new GrimSteelHammerItem(new Item.Properties().tab(Steelworks.CREATIVETAB).durability(64).setNoRepair()));
 	public static RegistryObject<Item> STEEL_INGOT = ITEMS.register("steel_ingot", () -> new Item(new Item.Properties().tab(Steelworks.CREATIVETAB)));
 	public static RegistryObject<Item> CLARITE = ITEMS.register("clarite", () -> new Item(new Item.Properties().tab(Steelworks.CREATIVETAB)));
-	public static RegistryObject<Item> STEEL_KNIFE = ITEMS.register("steel_knife", () -> new SwordItem(new SteelItemTier(), 1, -1.8F, new Item.Properties().tab(ModList.get().isLoaded("farmersdelight") ? Steelworks.CREATIVETAB : null)));
+	public static RegistryObject<Item> STEEL_KNIFE = ITEMS.register("steel_knife", () -> new ToolItem(0, -2F, new SteelItemTier(), Sets.newHashSet(), new Item.Properties().tab(ModList.get().isLoaded("farmersdelight") ? Steelworks.CREATIVETAB : null)) {
+		@Override
+		public boolean canApplyAtEnchantingTable(ItemStack stack, net.minecraft.enchantment.Enchantment ench) {
+			if (Sets.newHashSet(Enchantments.BLOCK_FORTUNE).contains(ench)) {
+				return false;
+			}
+			if (Sets.newHashSet(Enchantments.BANE_OF_ARTHROPODS, Enchantments.FIRE_ASPECT, Enchantments.KNOCKBACK, Enchantments.SHARPNESS, Enchantments.SMITE, Enchantments.MOB_LOOTING).contains(ench)) {
+				return true;
+			}
+			return ench.category.canEnchant(stack.getItem());
+		}
+	});
 	public static RegistryObject<Item> STEEL_NUGGET = ITEMS.register("steel_nugget", () -> new Item(new Item.Properties().tab(Steelworks.CREATIVETAB)));
 	public static RegistryObject<Item> STEEL_PICKAXE = ITEMS.register("steel_pickaxe", () -> new PickaxeItem(new SteelItemTier(), 2, -3.0F, new Item.Properties().tab(Steelworks.CREATIVETAB)));
 	public static RegistryObject<Item> STEEL_AXE = ITEMS.register("steel_axe", () -> new AxeItem(new SteelItemTier(), 5.5F, -3.1F, new Item.Properties().tab(Steelworks.CREATIVETAB)));
