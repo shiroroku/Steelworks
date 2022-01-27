@@ -1,6 +1,7 @@
 package com.steelworks.Capability;
 
 import com.steelworks.CommonSetup;
+import com.steelworks.Data.DataConfigJsonReloader;
 import com.steelworks.Network.BleedUpdateMessage;
 import com.steelworks.Steelworks;
 import net.minecraft.entity.LivingEntity;
@@ -52,15 +53,14 @@ public class Bleed {
 
 				LivingEntity attacker = (LivingEntity) e.getSource().getEntity();
 				ItemStack heldItem = attacker.getMainHandItem();
-				if (heldItem.hasTag() && heldItem.getTag().contains("bleed_damage") && heldItem.getTag().getInt("bleed_damage") > 0) {
-					int amt = heldItem.getTag().getInt("bleed_damage");
-
+				int bleedDamage = create().getBleedValueFromItem(heldItem);
+				if (bleedDamage > 0) {
 					Bleed target_bleed = e.getEntityLiving().getCapability(BleedCapability.CAPABILITY).orElse(null);
 
 					if (target_bleed == null) {
 						Steelworks.LOGGER.error("Bleed capability missing from entity!");
 					} else {
-						target_bleed.setStacks(amt + target_bleed.getStacks(), e.getEntityLiving());
+						target_bleed.setStacks(bleedDamage + target_bleed.getStacks(), e.getEntityLiving());
 					}
 				}
 			}
@@ -79,6 +79,16 @@ public class Bleed {
 		if (entity instanceof ServerPlayerEntity) {
 			CommonSetup.CHANNEL.send(PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity) entity), new BleedUpdateMessage(stacks));
 		}
+	}
+
+	public int getBleedValueFromItem(ItemStack item) {
+		//From nbttag
+		if (item.hasTag() && item.getTag().contains("bleed_damage") && item.getTag().getInt("bleed_damage") > 0) {
+			return item.getTag().getInt("bleed_damage");
+		}
+
+		//From data
+		return DataConfigJsonReloader.getBleedAmountFromItem(item.getItem().getRegistryName());
 	}
 
 	public int getStacks() {
