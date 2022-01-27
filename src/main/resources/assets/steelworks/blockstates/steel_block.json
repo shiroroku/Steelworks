@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "": {
+            "model": "steelworks:block/steel_block"
+        }
+    }
+}

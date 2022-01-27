@@ -19,7 +19,8 @@ public class BlockRegistry {
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Steelworks.MODID);
 
 	public static final RegistryObject<ForgeFurnaceBlock> FORGE_FURNACE = registerBlockAndItem("forge_furnace", ForgeFurnaceBlock::new);
-	public static final RegistryObject<Block> STEEL_PLATE_BLOCK = registerBlockAndItem("steel_plate_block", () -> new Block(AbstractBlock.Properties.of(Material.HEAVY_METAL).strength(10.0f).harvestTool(ToolType.PICKAXE)));
+	public static final RegistryObject<Block> STEEL_PLATE_BLOCK = registerBlockAndItem("steel_plate_block", () -> new Block(AbstractBlock.Properties.of(Material.HEAVY_METAL).strength(10.0f, 64f).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE)));
+	public static final RegistryObject<Block> STEEL_BLOCK = registerBlockAndItem("steel_block", () -> new Block(AbstractBlock.Properties.of(Material.HEAVY_METAL).strength(10.0f, 64f).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE)));
 
 	public static void init() {
 		BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
