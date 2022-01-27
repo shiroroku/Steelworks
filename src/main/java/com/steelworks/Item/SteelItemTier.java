@@ -7,7 +7,7 @@ import net.minecraft.item.crafting.Ingredient;
 public class SteelItemTier implements IItemTier {
 	@Override
 	public int getUses() {
-		return 500;
+		return 750;
 	}
 
 	@Override
