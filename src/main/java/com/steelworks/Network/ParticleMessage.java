@@ -3,7 +3,7 @@ package com.steelworks.Network;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
 
-public class CustomParticleMessage {
+public class ParticleMessage {
 
 	public ResourceLocation particle;
 	public double x;
@@ -18,7 +18,7 @@ public class CustomParticleMessage {
 	/**
 	 * Custom particle packet since server particle packets don't carry over correct motion values in the way we use them.
 	 */
-	public CustomParticleMessage(ResourceLocation id, double x, double y, double z, double mx, double my, double mz, int a) {
+	public ParticleMessage(ResourceLocation id, double x, double y, double z, double mx, double my, double mz, int a) {
 		this.particle = id;
 		this.x = x;
 		this.y = y;
@@ -30,12 +30,12 @@ public class CustomParticleMessage {
 		initialized = true;
 	}
 
-	public CustomParticleMessage() {
+	public ParticleMessage() {
 		initialized = false;
 	}
 
-	public static CustomParticleMessage decode(PacketBuffer buf) {
-		CustomParticleMessage retval = new CustomParticleMessage();
+	public static ParticleMessage decode(PacketBuffer buf) {
+		ParticleMessage retval = new ParticleMessage();
 		try {
 			retval.particle = buf.readResourceLocation();
 			retval.x = buf.readDouble();

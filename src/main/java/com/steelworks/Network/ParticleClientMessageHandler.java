@@ -1,5 +1,6 @@
 package com.steelworks.Network;
 
+import com.steelworks.Steelworks;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particles.IParticleData;
 import net.minecraftforge.fml.LogicalSide;
@@ -16,28 +17,28 @@ public class ParticleClientMessageHandler {
 
 	private static final Logger LOGGER = LogManager.getLogger();
 
-	public static void onMessageReceived(final CustomParticleMessage message, Supplier<NetworkEvent.Context> ctxSupplier) {
+	public static void onMessageReceived(final ParticleMessage message, Supplier<NetworkEvent.Context> ctxSupplier) {
 		NetworkEvent.Context ctx = ctxSupplier.get();
 		LogicalSide sideReceived = ctx.getDirection().getReceptionSide();
 		ctx.setPacketHandled(true);
 		if (sideReceived != LogicalSide.CLIENT) {
-			LOGGER.warn("CustomParticleMessage received on wrong side:" + ctx.getDirection().getReceptionSide());
+			Steelworks.LOGGER.warn("ParticleMessage received on wrong side:" + ctx.getDirection().getReceptionSide());
 			return;
 		}
 		if (!message.initialized) {
-			LOGGER.warn("CustomParticleMessage was invalid: " + message);
+			Steelworks.LOGGER.warn("ParticleMessage was invalid: " + message);
 			return;
 		}
 
 		Optional<ClientWorld> clientWorld = LogicalSidedProvider.CLIENTWORLD.get(sideReceived);
 		if (!clientWorld.isPresent()) {
-			LOGGER.warn("CustomParticleMessage context could not provide a ClientWorld.");
+			Steelworks.LOGGER.warn("ParticleMessage context could not provide a ClientWorld.");
 			return;
 		}
 		ctx.enqueueWork(() -> processMessage(clientWorld.get(), message));
 	}
 
-	private static void processMessage(ClientWorld worldClient, CustomParticleMessage message) {
+	private static void processMessage(ClientWorld worldClient, ParticleMessage message) {
 		for (int i = 0; i < message.a; i++) {
 			worldClient.addParticle((IParticleData) ForgeRegistries.PARTICLE_TYPES.getValue(message.particle), message.x, message.y, message.z, message.mx, message.my, message.mz);
 		}
