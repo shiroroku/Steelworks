@@ -1,6 +1,7 @@
 package com.steelworks.Capability;
 
 import com.steelworks.CommonSetup;
+import com.steelworks.Configuration;
 import com.steelworks.Data.DataConfigJsonReloader;
 import com.steelworks.Network.BleedUpdateMessage;
 import com.steelworks.Steelworks;
@@ -19,9 +20,7 @@ import net.minecraftforge.fml.network.PacketDistributor;
 public class Bleed {
 
 	private int stacks;
-	private static final float decayInterval = 4;
 	private static final int maxStacks = 10;
-	private static final float bleedDamage = 0.2f;
 
 	public Bleed() {
 		this(0);
@@ -37,7 +36,7 @@ public class Bleed {
 
 	public static void handleLivingUpdate(LivingEvent.LivingUpdateEvent e) {
 
-		if (e.getEntity().tickCount % (20 * decayInterval) == 0) {
+		if (e.getEntity().tickCount % (20 * Configuration.BLEED_DECAYINTERVAL.get()) == 0) {
 			Bleed target_bleed = e.getEntityLiving().getCapability(BleedCapability.CAPABILITY).orElse(null);
 			if (target_bleed != null) {
 				if (target_bleed.getStacks() > 0) {
@@ -71,7 +70,7 @@ public class Bleed {
 		if (entity != null) {
 			if (stacks >= maxStacks) {
 				stacks = 0;
-				entity.hurt(DamageSource.GENERIC, entity.getMaxHealth() * bleedDamage);
+				entity.hurt(DamageSource.GENERIC, entity.getMaxHealth() * Configuration.BLEED_DAMAGE.get().floatValue());
 			}
 		}
 

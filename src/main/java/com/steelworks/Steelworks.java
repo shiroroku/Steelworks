@@ -20,17 +20,14 @@ public class Steelworks {
 		- Gauntlet offhand armor does not apply to the player
 		-
 
-
-
 	 */
-
-
 
 	public static final String MODID = "steelworks";
 	public static final Logger LOGGER = LogManager.getLogger();
 
 	public Steelworks() {
 		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Configuration.CLIENT_CONFIG);
+		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Configuration.COMMON_CONFIG);
 
 		ItemRegistry.init();
 		BlockRegistry.init();
