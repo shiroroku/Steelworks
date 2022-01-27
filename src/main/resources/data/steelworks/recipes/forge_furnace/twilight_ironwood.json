@@ -1,0 +1,25 @@
+{
+    "type": "steelworks:forge_furnace_recipe",
+    "ingredients": [
+    {
+        "item": "twilightforest:liveroot"
+    },
+    [
+    {
+        "item": "minecraft:iron_ingot"
+    },
+    {
+        "item": "minecraft:iron_ore"
+    }
+    ],
+    {
+        "item": "minecraft:gold_nugget"
+    }
+],
+"output": {
+    "item": "twilightforest:ironwood_ingot",
+    "count": 2
+},
+    "xp": 0.4,
+    "craft_time": 300
+}

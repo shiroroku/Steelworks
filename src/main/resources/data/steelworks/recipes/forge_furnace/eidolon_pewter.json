@@ -1,0 +1,27 @@
+{
+    "type": "steelworks:forge_furnace_recipe",
+    "ingredients": [
+    [
+    {
+        "item": "eidolon:lead_ingot"
+    },
+    {
+        "item": "eidolon:lead_ore"
+    }
+    ],
+    [
+    {
+        "item": "minecraft:iron_ingot"
+    },
+    {
+        "item": "minecraft:iron_ore"
+    }
+    ]
+],
+"output": {
+    "item": "eidolon:pewter_ingot",
+    "count": 2
+},
+    "xp": 0.4,
+    "craft_time": 300
+}

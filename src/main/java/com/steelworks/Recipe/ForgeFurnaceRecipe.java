@@ -2,6 +2,7 @@ package com.steelworks.Recipe;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+import com.google.gson.JsonSyntaxException;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.*;
@@ -133,25 +134,29 @@ public class ForgeFurnaceRecipe implements IRecipe<IInventory> {
 
 		@Override
 		public ForgeFurnaceRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
-			NonNullList<Ingredient> inputStacks = NonNullList.create();
-			for (int i = 0; i < JSONUtils.getAsJsonArray(json, "ingredients").size(); ++i) {
-				Ingredient ingredient = Ingredient.fromJson(JSONUtils.getAsJsonArray(json, "ingredients").get(i));
-				if (!ingredient.isEmpty()) {
-					inputStacks.add(ingredient);
+			try {
+				NonNullList<Ingredient> inputStacks = NonNullList.create();
+				for (int i = 0; i < JSONUtils.getAsJsonArray(json, "ingredients").size(); ++i) {
+					Ingredient ingredient = Ingredient.fromJson(JSONUtils.getAsJsonArray(json, "ingredients").get(i));
+					if (!ingredient.isEmpty()) {
+						inputStacks.add(ingredient);
+					}
 				}
-			}
 
-			if (inputStacks.isEmpty()) {
-				throw new JsonParseException("No ingredients for forge furnace recipe.");
-			} else {
-				if (inputStacks.size() > 3) {
-					throw new JsonParseException("Too many ingredients for forge furnace recipe, the max is 3.");
+				if (inputStacks.isEmpty()) {
+					throw new JsonParseException("No ingredients for forge furnace recipe.");
 				} else {
-					ItemStack outputStack = ShapedRecipe.itemFromJson(JSONUtils.getAsJsonObject(json, "output"));
-					float xp = JSONUtils.getAsFloat(json, "xp");
-					int craftTime = JSONUtils.getAsInt(json, "craft_time");
-					return new ForgeFurnaceRecipe(recipeId, inputStacks, outputStack, xp, craftTime);
+					if (inputStacks.size() > 3) {
+						throw new JsonParseException("Too many ingredients for forge furnace recipe, the max is 3.");
+					} else {
+						ItemStack outputStack = ShapedRecipe.itemFromJson(JSONUtils.getAsJsonObject(json, "output"));
+						float xp = JSONUtils.getAsFloat(json, "xp");
+						int craftTime = JSONUtils.getAsInt(json, "craft_time");
+						return new ForgeFurnaceRecipe(recipeId, inputStacks, outputStack, xp, craftTime);
+					}
 				}
+			} catch (JsonSyntaxException e) {
+				return null;
 			}
 		}
 

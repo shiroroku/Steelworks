@@ -13,6 +13,19 @@ import org.apache.logging.log4j.Logger;
 @Mod(Steelworks.MODID)
 public class Steelworks {
 
+	/*
+		BUGS:
+
+		- Scythes harvesting do not notify other players in multiplayer
+		- Gauntlet offhand armor does not apply to the player
+		-
+
+
+
+	 */
+
+
+
 	public static final String MODID = "steelworks";
 	public static final Logger LOGGER = LogManager.getLogger();
 

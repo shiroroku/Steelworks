@@ -1,6 +1,8 @@
 {
     "replace": false,
     "values": [
-        "steelworks:steel_knife"
+        "steelworks:steel_knife",
+        "steelworks:steel_scythe",
+        "steelworks:grim_scythe"
     ]
 }
