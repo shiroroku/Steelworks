@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "steelworks:items/clarite"
+        "layer0": "steelworks:items/carmine_flux"
     }
 }

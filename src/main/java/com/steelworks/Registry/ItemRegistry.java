@@ -37,7 +37,7 @@ public class ItemRegistry {
 	public static RegistryObject<Item> STEEL_GAUNTLET = ITEMS.register("steel_gauntlet", () -> new SteelGauntletItem(new SteelItemTier(), 1, 0.5F, new Item.Properties().tab(Steelworks.CREATIVETAB)));
 	public static RegistryObject<Item> GRIMSTEEL_HAMMER = ITEMS.register("grimsteel_hammer", () -> new GrimSteelHammerItem(new Item.Properties().tab(Steelworks.CREATIVETAB).durability(64).setNoRepair()));
 	public static RegistryObject<Item> STEEL_INGOT = ITEMS.register("steel_ingot", () -> new Item(new Item.Properties().tab(Steelworks.CREATIVETAB)));
-	public static RegistryObject<Item> CLARITE = ITEMS.register("clarite", () -> new Item(new Item.Properties().tab(Steelworks.CREATIVETAB)));
+	public static RegistryObject<Item> CARMINEFLUX = ITEMS.register("carmine_flux", () -> new Item(new Item.Properties().tab(Steelworks.CREATIVETAB)));
 	public static RegistryObject<Item> STEEL_KNIFE = ITEMS.register("steel_knife", () -> new ToolItem(0, -2F, new SteelItemTier(), Sets.newHashSet(), new Item.Properties().tab(ModList.get().isLoaded("farmersdelight") ? Steelworks.CREATIVETAB : null)) {
 		@Override
 		public boolean canApplyAtEnchantingTable(ItemStack stack, net.minecraft.enchantment.Enchantment ench) {
