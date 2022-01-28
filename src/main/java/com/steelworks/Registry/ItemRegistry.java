@@ -37,7 +37,7 @@ public class ItemRegistry {
 	public static RegistryObject<Item> STEEL_GAUNTLET = ITEMS.register("steel_gauntlet", () -> new SteelGauntletItem(new SteelItemTier(), 1, 0.5F, new Item.Properties().tab(Steelworks.CREATIVETAB)));
 	public static RegistryObject<Item> GRIMSTEEL_HAMMER = ITEMS.register("grimsteel_hammer", () -> new GrimSteelHammerItem(new Item.Properties().tab(Steelworks.CREATIVETAB).durability(64).setNoRepair()));
 	public static RegistryObject<Item> STEEL_INGOT = ITEMS.register("steel_ingot", () -> new Item(new Item.Properties().tab(Steelworks.CREATIVETAB)));
-	public static RegistryObject<Item> CARMINEFLUX = ITEMS.register("carmine_flux", () -> new Item(new Item.Properties().tab(Steelworks.CREATIVETAB)));
+	public static RegistryObject<Item> CARMINE_FLUX = ITEMS.register("carmine_flux", () -> new Item(new Item.Properties().tab(Steelworks.CREATIVETAB)));
 	public static RegistryObject<Item> STEEL_KNIFE = ITEMS.register("steel_knife", () -> new ToolItem(0, -2F, new SteelItemTier(), Sets.newHashSet(), new Item.Properties().tab(ModList.get().isLoaded("farmersdelight") ? Steelworks.CREATIVETAB : null)) {
 		@Override
 		public boolean canApplyAtEnchantingTable(ItemStack stack, net.minecraft.enchantment.Enchantment ench) {
@@ -58,6 +58,7 @@ public class ItemRegistry {
 	public static RegistryObject<Item> STEEL_PLATE = ITEMS.register("steel_plate", () -> new Item(new Item.Properties().tab(Steelworks.CREATIVETAB)));
 	public static RegistryObject<Item> STEEL_SCYTHE = ITEMS.register("steel_scythe", () -> new SteelScythe(new SteelItemTier(), 4, -2.8F, new Item.Properties().tab(Steelworks.CREATIVETAB)));
 	public static RegistryObject<Item> STEEL_SWORD = ITEMS.register("steel_sword", () -> new SwordItem(new SteelItemTier(), 3, -2.4F, new Item.Properties().tab(Steelworks.CREATIVETAB)));
+	public static RegistryObject<Item> GRIM_CLEAVER = ITEMS.register("grim_cleaver", () -> new SwordItem(new SteelItemTier(), 7, -3.5F, new Item.Properties().tab(Steelworks.CREATIVETAB)));
 	public static RegistryObject<Item> STEEL_WRENCH = ITEMS.register("steel_wrench", () -> new SteelWrench(new SteelItemTier(), new Item.Properties().tab(Steelworks.CREATIVETAB)));
 	public static RegistryObject<Item> SENBON = ITEMS.register("senbon", () -> new SenbonItem(new Item.Properties().tab(Steelworks.CREATIVETAB)));
 	public static RegistryObject<Item> SHURIKEN = ITEMS.register("shuriken", () -> new ShurikenItem(new Item.Properties().tab(Steelworks.CREATIVETAB)));

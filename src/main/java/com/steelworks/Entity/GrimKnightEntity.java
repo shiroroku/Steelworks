@@ -1,18 +1,23 @@
 package com.steelworks.Entity;
 
-import net.minecraft.entity.EntitySize;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.Pose;
+import com.steelworks.Registry.ItemRegistry;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
+
+import javax.annotation.Nullable;
 
 public class GrimKnightEntity extends MonsterEntity {
 
@@ -28,12 +33,13 @@ public class GrimKnightEntity extends MonsterEntity {
 	public GrimKnightEntity(EntityType<? extends MonsterEntity> entity, World world) {
 		super(entity, world);
 		this.xpReward = XP;
+		this.setDropChance(EquipmentSlotType.MAINHAND, 0);
 	}
 
 	@Override
 	protected void registerGoals() {
 		this.goalSelector.addGoal(0, new SwimGoal(this));
-		this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0D, false));
+		this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0D, true));
 		this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
 		this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
 		this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
@@ -46,8 +52,16 @@ public class GrimKnightEntity extends MonsterEntity {
 	}
 
 	@Override
-	public boolean canHoldItem(ItemStack item) {
-		return false;
+	@Nullable
+	public ILivingEntityData finalizeSpawn(IServerWorld serverWorld, DifficultyInstance difficulty, SpawnReason spawnReason, @Nullable ILivingEntityData entityData, @Nullable CompoundNBT nbt) {
+		entityData = super.finalizeSpawn(serverWorld, difficulty, spawnReason, entityData, nbt);
+		this.populateDefaultEquipmentSlots(difficulty);
+		return entityData;
+	}
+
+	@Override
+	protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
+		this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(ItemRegistry.GRIM_CLEAVER.get()));
 	}
 
 	@Override

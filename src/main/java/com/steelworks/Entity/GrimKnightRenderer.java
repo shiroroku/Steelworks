@@ -2,11 +2,11 @@ package com.steelworks.Entity;
 
 import com.steelworks.Registry.EntityRegistry;
 import com.steelworks.Steelworks;
+import net.minecraft.client.renderer.entity.BipedRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
 
-public class GrimKnightRenderer extends MobRenderer<GrimKnightEntity, GrimKnightModel> {
+public class GrimKnightRenderer extends BipedRenderer<GrimKnightEntity, GrimKnightModel> {
 
 	private static final ResourceLocation TEXTURE = new ResourceLocation(Steelworks.MODID, "textures/entity/" + EntityRegistry.ID_GRIM_KNIGHT + ".png");
 

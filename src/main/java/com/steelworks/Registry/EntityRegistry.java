@@ -18,13 +18,13 @@ import java.awt.*;
 public class EntityRegistry {
 	public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, Steelworks.MODID);
 
-	public static final RegistryObject<EntityType<SenbonEntity>> SENBON = ENTITIES.register("senbon", () -> EntityType.Builder.<SenbonEntity>of(SenbonEntity::new, EntityClassification.MISC).sized(0.8f, 0.8f).build("senbon"));
-	public static final RegistryObject<EntityType<ShurikenEntity>> SHURIKEN = ENTITIES.register("shuriken", () -> EntityType.Builder.<ShurikenEntity>of(ShurikenEntity::new, EntityClassification.MISC).sized(0.8f, 0.8f).build("shuriken"));
+	public static final RegistryObject<EntityType<SenbonEntity>> SENBON = ENTITIES.register("senbon", () -> EntityType.Builder.<SenbonEntity>of(SenbonEntity::new, EntityClassification.MISC).sized(0.8f, 0.8f).clientTrackingRange(4).build("senbon"));
+	public static final RegistryObject<EntityType<ShurikenEntity>> SHURIKEN = ENTITIES.register("shuriken", () -> EntityType.Builder.<ShurikenEntity>of(ShurikenEntity::new, EntityClassification.MISC).sized(0.8f, 0.8f).clientTrackingRange(4).build("shuriken"));
 
 	public static final String ID_GRIM_KNIGHT = "grim_knight";
-	private static final EntityType<GrimKnightEntity> GRIM_KNIGHT_BUILDER = EntityType.Builder.of(GrimKnightEntity::new, EntityClassification.MONSTER).build(ID_GRIM_KNIGHT);
+	private static final EntityType<GrimKnightEntity> GRIM_KNIGHT_BUILDER = EntityType.Builder.of(GrimKnightEntity::new, EntityClassification.MONSTER).sized(0.7F, 2.4F).fireImmune().clientTrackingRange(10).build(ID_GRIM_KNIGHT);
 	public static final RegistryObject<EntityType<GrimKnightEntity>> GRIM_KNIGHT = ENTITIES.register(ID_GRIM_KNIGHT, () -> GRIM_KNIGHT_BUILDER);
-	public static final RegistryObject<Item> EGG_CTHULHU_CULTIST = ItemRegistry.ITEMS.register(ID_GRIM_KNIGHT + "_egg", () -> createSpawnEgg(GRIM_KNIGHT_BUILDER, new Color(64, 56, 66), new Color(93, 227, 239)));
+	public static final RegistryObject<Item> EGG_GRIM_KNIGHT = ItemRegistry.ITEMS.register(ID_GRIM_KNIGHT + "_egg", () -> createSpawnEgg(GRIM_KNIGHT_BUILDER, new Color(64, 56, 66), new Color(93, 227, 239)));
 
 	public static void init() {
 		ENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());
