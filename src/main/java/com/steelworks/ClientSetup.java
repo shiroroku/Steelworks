@@ -1,7 +1,5 @@
 package com.steelworks;
 
-import com.steelworks.Entity.SenbonRenderer;
-import com.steelworks.Entity.ShurikenRenderer;
 import com.steelworks.Item.SteelWrench;
 import com.steelworks.Particle.LifestealParticle;
 import com.steelworks.Registry.EntityRegistry;
@@ -18,7 +16,6 @@ import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
@@ -33,9 +30,7 @@ public class ClientSetup {
 		//event.enqueueWork(() -> ItemModelsProperties.register(ItemRegistry.STEEL_SWORD.get(), new ResourceLocation(Steelworks.MODID, "blocking"), (stack, world, living) -> living != null && living.isUsingItem() && living.getUseItem() == stack ? 1.0F : 0.0F));
 		event.enqueueWork(() -> ItemModelsProperties.register(ItemRegistry.GRIM_SCYTHE.get(), new ResourceLocation(Steelworks.MODID, "charging"), (stack, world, living) -> living != null && living.isUsingItem() && living.getUseItem() == stack ? 1.0F : 0.0F));
 
-		RenderingRegistry.registerEntityRenderingHandler(EntityRegistry.SENBON.get(), SenbonRenderer::new);
-		RenderingRegistry.registerEntityRenderingHandler(EntityRegistry.SHURIKEN.get(), ShurikenRenderer::new);
-
+		EntityRegistry.initClient();
 	}
 
 	public static void onRenderGameOverlay(RenderGameOverlayEvent.Post e) {
