@@ -15,8 +15,6 @@ import java.util.function.Supplier;
 
 public class ParticleClientMessageHandler {
 
-	private static final Logger LOGGER = LogManager.getLogger();
-
 	public static void onMessageReceived(final ParticleMessage message, Supplier<NetworkEvent.Context> ctxSupplier) {
 		NetworkEvent.Context ctx = ctxSupplier.get();
 		LogicalSide sideReceived = ctx.getDirection().getReceptionSide();

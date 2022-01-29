@@ -2,7 +2,6 @@ package com.steelworks.Item;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.CropsBlock;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
@@ -24,6 +23,7 @@ import net.minecraftforge.event.entity.player.AttackEntityEvent;
 public class SteelScythe extends HoeItem {
 
 	private static final double sweepSize = 3.0D;
+	private static final int harvestRadius = 1;
 
 	public SteelScythe(IItemTier tier, int damage, float speed, Properties prop) {
 		super(tier, damage, speed, prop);
@@ -63,16 +63,16 @@ public class SteelScythe extends HoeItem {
 	public ActionResultType useOn(ItemUseContext ctx) {
 		World world = ctx.getLevel();
 		BlockState block = world.getBlockState(ctx.getClickedPos());
-		if (block.getBlock() instanceof CropsBlock && block.getValue(((CropsBlock) block.getBlock()).getAgeProperty()) >= ((CropsBlock) block.getBlock()).getMaxAge()) {
+		if (block.getBlock() instanceof CropsBlock && ((CropsBlock) block.getBlock()).isMaxAge(block)) {
 			world.destroyBlock(ctx.getClickedPos(), true);
 			world.setBlock(ctx.getClickedPos(), block.getBlock().defaultBlockState(), 3);
 			ctx.getItemInHand().hurtAndBreak(1, ctx.getPlayer(), (player) -> player.broadcastBreakEvent(ctx.getHand()));
 
-			for (int x = -1; x < 2; x++) {
-				for (int y = -1; y < 2; y++) {
+			for (int x = -harvestRadius; x <= harvestRadius; x++) {
+				for (int y = -harvestRadius; y <= harvestRadius; y++) {
 					BlockPos p = ctx.getClickedPos().offset(x, 0, y);
 					block = world.getBlockState(p);
-					if (block.getBlock() instanceof CropsBlock && block.getValue(((CropsBlock) block.getBlock()).getAgeProperty()) >= ((CropsBlock) block.getBlock()).getMaxAge()) {
+					if (block.getBlock() instanceof CropsBlock && ((CropsBlock) block.getBlock()).isMaxAge(block)) {
 						world.destroyBlock(p, true);
 						world.setBlock(p, block.getBlock().defaultBlockState(), 3);
 						world.globalLevelEvent(2001, p, Block.getId(block.getBlock().defaultBlockState()));

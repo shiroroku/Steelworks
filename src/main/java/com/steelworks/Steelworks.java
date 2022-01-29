@@ -15,10 +15,11 @@ public class Steelworks {
 
 	/*
 		BUGS:
+		- Gauntlet offhand armor does not apply to the player.
+		- Grim Knight zfighting on horns.
 
-		- Scythes harvesting do not notify other players in multiplayer
-		- Gauntlet offhand armor does not apply to the player
-		- Grim Knight zfighting on horns
+		TO-DO:
+		- Grim Scythe needs charge animation fixed, and to execute lifesteal on charged hit.
 
 	 */
 

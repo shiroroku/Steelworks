@@ -6,7 +6,7 @@ displayName = "Steelworks"
 modId = "steelworks"
 version = "${file.jarVersion}"
 # logoFile="examplemod.png"
-authors = "Lilith, shiroroku"
+authors = "Raven, shiroroku"
 credits = ""
 description = '''
 descriptionnnnnnnnnnnnnnnnnnn
