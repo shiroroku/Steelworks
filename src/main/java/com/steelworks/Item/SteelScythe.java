@@ -81,6 +81,8 @@ public class SteelScythe extends HoeItem {
 				}
 			}
 
+			return ActionResultType.SUCCESS;
+
 		}
 		return super.useOn(ctx);
 	}

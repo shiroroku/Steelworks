@@ -18,7 +18,7 @@ public class Steelworks {
 
 		- Scythes harvesting do not notify other players in multiplayer
 		- Gauntlet offhand armor does not apply to the player
-		-
+		- Grim Knight zfighting on horns
 
 	 */
 
