@@ -80,7 +80,8 @@ public class SteelScythe extends HoeItem {
 					}
 				}
 			}
-
+			ctx.getPlayer().level.playSound(null, ctx.getPlayer().getX(), ctx.getPlayer().getY(), ctx.getPlayer().getZ(), SoundEvents.PLAYER_ATTACK_SWEEP, ctx.getPlayer().getSoundSource(), 1.0F, 1.0F);
+			ctx.getPlayer().sweepAttack();
 			return ActionResultType.SUCCESS;
 
 		}
