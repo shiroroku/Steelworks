@@ -24,37 +24,44 @@ public class DataConfigJsonReloader extends JsonReloadListener {
 	public void apply(Map<ResourceLocation, JsonElement> map, IResourceManager manager, IProfiler profiler) {
 		heatMultipliers.clear();
 		bleedInflictors.clear();
-		loadHeatMultipliers(map);
-		loadBleedInflictions(map);
+
+		new config(map, "forge_furnace_heat_multipliers") {
+			@Override
+			public void handleElement(JsonElement jsonElement) {
+				jsonElement.getAsJsonObject().getAsJsonObject("multipliers").entrySet().forEach((entry) -> heatMultipliers.put(ResourceLocation.tryParse(entry.getKey()), entry.getValue().getAsFloat()));
+			}
+		};
+
+		new config(map, "inflicts_bleeding") {
+			@Override
+			public void handleElement(JsonElement jsonElement) {
+				jsonElement.getAsJsonObject().getAsJsonObject("items").entrySet().forEach((entry) -> bleedInflictors.put(ResourceLocation.tryParse(entry.getKey()), entry.getValue().getAsInt()));
+			}
+		};
+
 	}
 
-	private static void loadBleedInflictions(Map<ResourceLocation, JsonElement> map) {
-		map.forEach((file, jsonElement) -> {
-			try {
-				if (file.equals(new ResourceLocation(Steelworks.MODID, "inflicts_bleeding"))) {
-					jsonElement.getAsJsonObject().getAsJsonObject("items").entrySet().forEach((entry) -> bleedInflictors.put(ResourceLocation.tryParse(entry.getKey()), entry.getValue().getAsInt()));
-				}
-			} catch (Exception e) {
-				Steelworks.LOGGER.error("Error when loading config/inflicts_bleeding from data!: " + e.getMessage());
-			}
-		});
-	}
+	private abstract static class config {
 
-	private static void loadHeatMultipliers(Map<ResourceLocation, JsonElement> map) {
-		map.forEach((file, jsonElement) -> {
-			try {
-				if (file.equals(new ResourceLocation(Steelworks.MODID, "forge_furnace_heat_multipliers"))) {
-					jsonElement.getAsJsonObject().getAsJsonObject("multipliers").entrySet().forEach((entry) -> heatMultipliers.put(ResourceLocation.tryParse(entry.getKey()), entry.getValue().getAsFloat()));
+		config(Map<ResourceLocation, JsonElement> map, String id) {
+			map.forEach((file, jsonElement) -> {
+				try {
+					if (file.equals(new ResourceLocation(Steelworks.MODID, id))) {
+						handleElement(jsonElement);
+					}
+				} catch (Exception e) {
+					Steelworks.LOGGER.error("Error when loading config/" + id + " from data!: " + e.getMessage());
 				}
-			} catch (Exception e) {
-				Steelworks.LOGGER.error("Error when loading config/forge_furnace_heat_multipliers from data!: " + e.getMessage());
-			}
-		});
+			});
+		}
+
+		public abstract void handleElement(JsonElement jsonElement);
 	}
 
 	public static Float getHeatMultiplierFromBlock(ResourceLocation block) {
 		return heatMultipliers.getOrDefault(block, 0.0f);
 	}
+
 	public static int getBleedAmountFromItem(ResourceLocation item) {
 		return bleedInflictors.getOrDefault(item, 0);
 	}

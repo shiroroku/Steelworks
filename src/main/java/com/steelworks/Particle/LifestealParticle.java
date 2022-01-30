@@ -32,44 +32,22 @@ public class LifestealParticle extends SpriteTexturedParticle {
 	}
 
 	@Override
-	public IParticleRenderType getRenderType() {
-		return IParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
-	}
-
-	@Override
 	public void tick() {
 		float t = (float) this.age / this.lifetime;
 
-		double lerpA1X = MathHelper.lerp(t, startingPos.x, controlPoint.x);
-		double lerpA1Y = MathHelper.lerp(t, startingPos.y, controlPoint.y);
-		double lerpA1Z = MathHelper.lerp(t, startingPos.z, controlPoint.z);
-
-		double lerpA2X = MathHelper.lerp(t, controlPoint.x, controlPoint2.x);
-		double lerpA2Y = MathHelper.lerp(t, controlPoint.y, controlPoint2.y);
-		double lerpA2Z = MathHelper.lerp(t, controlPoint.z, controlPoint2.z);
-
-		double lerpA3X = MathHelper.lerp(t, controlPoint2.x, endingPos.x);
-		double lerpA3Y = MathHelper.lerp(t, controlPoint2.y, endingPos.y);
-		double lerpA3Z = MathHelper.lerp(t, controlPoint2.z, endingPos.z);
-
-		double lerpB1X = MathHelper.lerp(t, lerpA1X, lerpA2X);
-		double lerpB1Y = MathHelper.lerp(t, lerpA1Y, lerpA2Y);
-		double lerpB1Z = MathHelper.lerp(t, lerpA1Z, lerpA2Z);
-
-		double lerpB2X = MathHelper.lerp(t, lerpA2X, lerpA3X);
-		double lerpB2Y = MathHelper.lerp(t, lerpA2Y, lerpA3Y);
-		double lerpB2Z = MathHelper.lerp(t, lerpA2Z, lerpA3Z);
-
-		double lerpFinalX = MathHelper.lerp(t, lerpB1X, lerpB2X);
-		double lerpFinalY = MathHelper.lerp(t, lerpB1Y, lerpB2Y);
-		double lerpFinalZ = MathHelper.lerp(t, lerpB1Z, lerpB2Z);
+		Vector3d lerpA1 = lerpVector(t, startingPos, controlPoint);
+		Vector3d lerpA2 = lerpVector(t, controlPoint, controlPoint2);
+		Vector3d lerpA3 = lerpVector(t, controlPoint2, endingPos);
+		Vector3d lerpB1 = lerpVector(t, lerpA1, lerpA2);
+		Vector3d lerpB2 = lerpVector(t, lerpA2, lerpA3);
+		Vector3d lerpFinal = lerpVector(t, lerpB1, lerpB2);
 
 		this.xo = this.x;
 		this.yo = this.y;
 		this.zo = this.z;
-		this.x = lerpFinalX;
-		this.y = lerpFinalY;
-		this.z = lerpFinalZ;
+		this.x = lerpFinal.x;
+		this.y = lerpFinal.y;
+		this.z = lerpFinal.z;
 
 		PlayerEntity player = this.level.getNearestPlayer(this.x, this.y, this.z, 10.0D, false);
 		if (player != null) {
@@ -82,6 +60,15 @@ public class LifestealParticle extends SpriteTexturedParticle {
 			remove();
 		}
 
+	}
+
+	private static Vector3d lerpVector(double percent, Vector3d a, Vector3d b) {
+		return new Vector3d(MathHelper.lerp(percent, a.x, b.x), MathHelper.lerp(percent, a.y, b.y), MathHelper.lerp(percent, a.z, b.z));
+	}
+
+	@Override
+	public IParticleRenderType getRenderType() {
+		return IParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
 	}
 
 	@OnlyIn(Dist.CLIENT)
