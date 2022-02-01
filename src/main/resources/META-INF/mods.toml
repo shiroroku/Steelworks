@@ -23,3 +23,9 @@ modId = "minecraft"
 ordering = "NONE"
 side = "BOTH"
 versionRange = "[1.16.5,1.17)"
+[[dependencies.steelworks]]
+mandatory=true
+modId="geckolib3"
+ordering="BEFORE"
+side="BOTH"
+versionRange="[3.0.65,)"

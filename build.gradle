@@ -73,12 +73,16 @@ repositories {
         name = "ModMaven"
         url = "https://modmaven.k-4u.nl"
     }
+    maven {
+        url = "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/"
+    }
 }
 
 dependencies {
     minecraft 'net.minecraftforge:forge:1.16.5-' + version_forge
     compileOnly fg.deobf("mezz.jei:jei-1.16.5:${version_jei}:api")
     runtimeOnly fg.deobf("mezz.jei:jei-1.16.5:${version_jei}")
+    implementation fg.deobf("software.bernie.geckolib:geckolib-forge-1.16.5:${version_gekolib}")
 }
 
 jar {
